@@ -1,0 +1,23 @@
+[33mcommit 68c45ba35363520193d787cbba8aef92bb6b6350[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Yannik195 <yannisim@gmail.com>
+Date:   Sun Aug 15 18:18:36 2021 +0200
+
+    add user to db
+
+[33mcommit 902227179b10cf51ae1921bf8bb54d25521a5027[m
+Author: Yannik195 <yannisim@gmail.com>
+Date:   Sun Aug 15 15:11:02 2021 +0200
+
+    setup mongodb and express routes
+
+[33mcommit 5fa5763098583cacee10256775faebcb8bb660b1[m
+Author: Yannik195 <yannisim@gmail.com>
+Date:   Sun Aug 15 13:45:26 2021 +0200
+
+    init express
+
+[33mcommit 2ef9b366e1edcd3c314315b58e1b73f22d605c24[m
+Author: Yannik195 <yannisim@gmail.com>
+Date:   Sun Aug 15 13:39:30 2021 +0200
+
+    initial commit

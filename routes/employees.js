@@ -14,13 +14,20 @@ router.post("/", async (req, res) => {
         age: req.body.age
     })
 
-    employee.save()
-        .then(data => {
-            res.json(data)
-        })
-        .catch(err => {
-            res.json({ message: err })
-        })
+    // employee.save()
+    //     .then(data => {
+    //         res.json(data)
+    //     })
+    //     .catch(err => {
+    //         res.json({ message: err })
+    //     })
+
+    try {
+        const savedEmployee = await employee.save()
+        res.json(savedEmployee)
+    } catch (err) {
+        res.json({ message: err })
+    }
 }
 )
 
