@@ -1,26 +1,35 @@
 const express = require("express")
 const router = express.Router();
 const Employee = require("../models/Employee")
-const col = require("../server")
 
-router.get("/", (req, res) => {
-    res.send("We are on Mitarbeiter")
+
+//Get all employees
+router.get("/", async (req, res) => {
+    try {
+        const employees = await Employee.find()
+        res.json(employees)
+    } catch (err) {
+        res.json({ message: err })
+    }
 })
 
+router.get("/:employeeId", async (req, res) => {
+    try {
+        const employee = await Employee.findById(req.params.employeeId)
+        res.json(employee)
+    } catch (err) {
+        res.json({ message: err })
+    }
+})
+
+
+//Submit employee
 router.post("/", async (req, res) => {
     const employee = new Employee({
         name: req.body.name,
         lastname: req.body.lastname,
         age: req.body.age
     })
-
-    // employee.save()
-    //     .then(data => {
-    //         res.json(data)
-    //     })
-    //     .catch(err => {
-    //         res.json({ message: err })
-    //     })
 
     try {
         const savedEmployee = await employee.save()
