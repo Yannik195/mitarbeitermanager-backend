@@ -5,6 +5,11 @@ const port = 3000
 //ENV
 require("dotenv/config")
 
+app.use(express.json());
+app.use(express.urlencoded({
+    extended: true
+}));
+
 //Database
 const mongoose = require("mongoose")
 
@@ -19,9 +24,9 @@ db.once('open', function () {
     console.log("Connected to DB")
 });
 
-const mitarbeiterRoute = require("./routes/mitarbeiter")
+const employeeRoute = require("./routes/employees")
 
-app.use("/mitarbeiter", mitarbeiterRoute)
+app.use("/employees", employeeRoute)
 
 
 app.get('/', (req, res) => {
