@@ -2,6 +2,10 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+//cors
+const cors = require("cors")
+app.use(cors())
+
 //ENV
 require("dotenv/config")
 
