@@ -2,6 +2,28 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+//ENV
+require("dotenv/config")
+
+//Database
+const mongoose = require("mongoose")
+
+mongoose.connect(process.env.DB_CONNECTION,
+    { useNewUrlParser: true, useUnifiedTopology: true }
+)
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+    // we're connected!
+    console.log("Connected to DB")
+});
+
+const mitarbeiterRoute = require("./routes/mitarbeiter")
+
+app.use("/mitarbeiter", mitarbeiterRoute)
+
+
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
