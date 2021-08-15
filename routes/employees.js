@@ -22,7 +22,6 @@ router.get("/:employeeId", async (req, res) => {
     }
 })
 
-
 //Submit employee
 router.post("/", async (req, res) => {
     const employee = new Employee({
@@ -39,5 +38,25 @@ router.post("/", async (req, res) => {
     }
 }
 )
+
+//Delete Employee
+router.delete("/:employeeId", async (req, res) => {
+    try {
+        const employee = await Employee.remove({ _id: req.params.employeeId })
+        res.json(employee)
+    } catch (err) {
+        res.json({ message: err })
+    }
+})
+
+//Update Employee
+router.patch("/:employeeId", async (req, res) => {
+    try {
+        const employee = await Employee.updateOne({ _id: req.params.employeeId }, { $set: { age: req.body.age } })
+        res.json(employee)
+    } catch (err) {
+        res.json({ message: err })
+    }
+})
 
 module.exports = router;
