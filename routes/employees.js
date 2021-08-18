@@ -24,10 +24,18 @@ router.get("/:employeeId", async (req, res) => {
 
 //Submit employee
 router.post("/", async (req, res) => {
+    console.log(req.body)
     const employee = new Employee({
         firstname: req.body.firstname,
         lastname: req.body.lastname,
-        email: req.body.email
+        email: req.body.email,
+        gender: req.body.email,
+        street: req.body.street,
+        number: req.body.number,
+        postcode: req.body.postcode,
+        country: req.body.country,
+        phone: req.body.phone
+
     })
 
     try {
