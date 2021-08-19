@@ -4,7 +4,7 @@ const port = 3000
 
 const cookieSession = require("cookie-session")
 const passport = require("passport")
-const localStrategy = require("passport-local").Strategy
+const local = require("passport-local").Strategy
 
 app.use(cookieSession({
     name: 'mysession',
@@ -46,10 +46,10 @@ db.once('open', function () {
 
 //Routes
 const employeeRoute = require("./routes/employees")
-const loginRoute = require("./routes/auth")
+const authRoute = require("./routes/auth")
 
 app.use("/employees", employeeRoute)
-app.use("/auth", loginRoute)
+app.use("/auth", authRoute)
 
 app.get('/', (req, res) => {
     res.send('Hello World!')

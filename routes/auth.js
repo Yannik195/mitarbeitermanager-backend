@@ -3,14 +3,18 @@ const router = express.Router();
 const User = require("../models/User")
 const passport = require("passport")
 
-router.post("/login", async (req, res) => {
-    console.log(req.body)
-    try {
-        const user = await User.find()
-        res.json(user)
-    } catch (err) {
-        res.json({ message: err })
-    }
+// router.post("/login", async (req, res) => {
+//     console.log(req.body)
+//     try {
+//         const user = await User.find()
+//         res.json(user)
+//     } catch (err) {
+//         res.json({ message: err })
+//     }
+// })
+
+router.post("/login", passport.authenticate("local"), (req, res) => {
+    res.send(200)
 })
 
 router.post("/signup", async (req, res) => {
