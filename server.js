@@ -2,6 +2,21 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+const cookieSession = require("cookie-session")
+const passport = require("passport")
+const localStrategy = require("passport-local").Strategy
+
+app.use(cookieSession({
+    name: 'mysession',
+    keys: ['vueauthrandomkey'],
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
 //cors
 const cors = require("cors")
 app.use(cors())
@@ -31,10 +46,10 @@ db.once('open', function () {
 
 //Routes
 const employeeRoute = require("./routes/employees")
-const loginRoute = require("./routes/login")
+const loginRoute = require("./routes/auth")
 
 app.use("/employees", employeeRoute)
-app.use("/login", loginRoute)
+app.use("/auth", loginRoute)
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
