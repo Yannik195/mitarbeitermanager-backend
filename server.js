@@ -28,10 +28,13 @@ db.once('open', function () {
     console.log("Connected to DB")
 });
 
+
+//Routes
 const employeeRoute = require("./routes/employees")
+const loginRoute = require("./routes/login")
 
 app.use("/employees", employeeRoute)
-
+app.use("/login", loginRoute)
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
