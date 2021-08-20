@@ -33,10 +33,10 @@ db.once('open', function () {
 
 //Routes
 const employeeRoute = require("./routes/employees")
-const loginRoute = require("./routes/login")
+const authRoute = require("./routes/auth")
 
 app.use("/employees", employeeRoute)
-app.use("/login", loginRoute)
+app.use("/auth", authRoute)
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
