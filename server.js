@@ -30,6 +30,8 @@ db.once('open', function () {
     console.log("Connected to DB")
 });
 
+// jwt
+const jwt = require("./jwt/jwt")
 
 //Routes
 const employeeRoute = require("./routes/employees")
