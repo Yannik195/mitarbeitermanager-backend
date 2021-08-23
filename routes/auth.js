@@ -1,16 +1,12 @@
 const express = require("express")
 const router = express.Router();
 const User = require("../models/User")
-const jwt = require("../jwt/jwt")
+const jwt = require("jsonwebtoken")
 
 router.post("/login", async (req, res) => {
-    console.log(req.body)
-    try {
-        const token = await jwt.generateAccessToken(req.body.email, req.body.password)
-        res.json(token)
-    } catch (err) {
-        res.json({ message: err })
-    }
+    const accessToken = jwt.sign(req.body.email, process.env.ACCESS_TOKEN_SECRET)
+    console.log(accessToken)
+    res.json({ accessToken: accessToken })
 })
 
 router.post("/signup", async (req, res) => {
@@ -26,6 +22,8 @@ router.post("/signup", async (req, res) => {
 
     }
 })
+
+
 
 
 module.exports = router;

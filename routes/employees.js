@@ -6,6 +6,7 @@ const jwt = require("../jwt/jwt")
 
 //Get all employees
 router.get("/", jwt.authenticateToken, async (req, res) => {
+    console.log("acces to user: " + req.user)
     try {
         const employees = await Employee.find()
         res.json(employees)
