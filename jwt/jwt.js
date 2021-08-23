@@ -13,7 +13,14 @@ function generateAccessToken(email, password) {
     return token;
 }
 
+function authenticateToken(req, res, next) {
+    const decoded = jwt.verify(req.body.token, process.env.JWT_SECRET)
+    console.log(decoded)
+    next()
+}
+
 
 module.exports = {
-    generateAccessToken
+    generateAccessToken,
+    authenticateToken
 }

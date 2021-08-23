@@ -1,10 +1,11 @@
 const express = require("express")
 const router = express.Router();
 const Employee = require("../models/Employee")
+const jwt = require("../jwt/jwt")
 
 
 //Get all employees
-router.get("/", async (req, res) => {
+router.get("/", jwt.authenticateToken, async (req, res) => {
     try {
         const employees = await Employee.find()
         res.json(employees)
