@@ -17,8 +17,16 @@ router.post("/login", async (req, res) => {
             // user found 
             // check for matching pw
             if (req.body.password == user.password) {
+                // Sucess!
                 // pw and mail match
-                res.json(user)
+                // Send token
+                const public = req.body.email + req.body.password
+                const accessToken = jwt.sign({
+                    exp: Math.floor(Date.now() / 1000) + (60 * 60), //1 Hour expiry
+                    data: public
+                }, process.env.ACCESS_TOKEN_SECRET);
+                console.log(accessToken)
+                res.json({ accessToken: accessToken })
             } else {
                 // wrong pw
                 res.status(401).send("wrong password")
@@ -29,13 +37,7 @@ router.post("/login", async (req, res) => {
         res.send(err)
     }
 
-    // const public = req.body.email + req.body.password
-    // const accessToken = jwt.sign({
-    //     exp: Math.floor(Date.now() / 1000) + (60 * 60), //1 Hour expiry
-    //     data: public
-    // }, process.env.ACCESS_TOKEN_SECRET);
-    // console.log(accessToken)
-    // res.json({ accessToken: accessToken })
+
 })
 
 router.post("/signup", async (req, res) => {
