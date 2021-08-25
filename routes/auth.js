@@ -64,7 +64,6 @@ router.post("/signup", async (req, res) => {
         const user = new User({
             email: req.body.email,
             password: req.body.password,
-            employees: ["1", "2", "3"]
         })
         try {
             const savedUser = await user.save()

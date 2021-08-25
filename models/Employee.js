@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 
 const EmployeeSchema = mongoose.Schema({
+    employerID: String,
     firstname: String,
     lastname: String,
     email: String,
@@ -15,7 +16,6 @@ const EmployeeSchema = mongoose.Schema({
     postcode: Number,
     country: String,
     phone: Number
-
 })
 
 module.exports = mongoose.model("Employee", EmployeeSchema)

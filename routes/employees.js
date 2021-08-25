@@ -7,9 +7,8 @@ const jwt = require("../jwt/jwt")
 //Get all employees
 // todo load only logged in users employees
 router.get("/", jwt.authenticateToken, async (req, res) => {
-    console.log("acces to user: " + req.user)
     try {
-        const employees = await Employee.find()
+        const employees = await Employee.find({ employerID: req.header("employeeID") })
         res.json(employees)
     } catch (err) {
         res.json({ message: err })
@@ -30,6 +29,7 @@ router.get("/:employeeId", async (req, res) => {
 router.post("/", async (req, res) => {
     console.log(req.body)
     const employee = new Employee({
+        employerID: req.body.employerID,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         email: req.body.email,
