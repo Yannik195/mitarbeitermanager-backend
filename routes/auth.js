@@ -12,7 +12,7 @@ router.post("/login", async (req, res) => {
         if (!user) {
             // no user found with this mail
             console.log("no user found")
-            res.status(401).send("no user found")
+            res.status(401).send("Wrong Email")
         } else {
             // user found 
             // check for matching pw
@@ -30,7 +30,7 @@ router.post("/login", async (req, res) => {
                 res.json({ accessToken: accessToken, uid: user._id })
             } else {
                 // wrong pw
-                res.status(401).send("wrong password")
+                res.status(401).send("Wrong Password")
             }
         }
 
