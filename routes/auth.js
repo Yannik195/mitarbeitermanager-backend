@@ -57,7 +57,7 @@ router.post("/signup", async (req, res) => {
     if (user) {
         // user exists already
         console.log("user exists already")
-        res.status(401)
+        res.status(401).send("Email already taken")
     } else {
         // user doesnt exist, create new one
         console.log("create new user")
