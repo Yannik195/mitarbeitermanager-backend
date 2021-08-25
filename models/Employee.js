@@ -15,6 +15,7 @@ const EmployeeSchema = mongoose.Schema({
     postcode: Number,
     country: String,
     phone: Number
+
 })
 
 module.exports = mongoose.model("Employee", EmployeeSchema)

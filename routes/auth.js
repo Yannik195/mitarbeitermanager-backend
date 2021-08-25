@@ -4,10 +4,10 @@ const User = require("../models/User")
 const jwt = require("jsonwebtoken");
 
 router.post("/login", async (req, res) => {
-    // Todo
     try {
         // query user in db
         const user = await User.findOne({ email: req.body.email })
+        console.log(user)
 
         if (!user) {
             // no user found with this mail
@@ -26,7 +26,8 @@ router.post("/login", async (req, res) => {
                     data: public
                 }, process.env.ACCESS_TOKEN_SECRET);
                 console.log(accessToken)
-                res.json({ accessToken: accessToken })
+                console.log("Uid: " + user._id)
+                res.json({ accessToken: accessToken, uid: user._id })
             } else {
                 // wrong pw
                 res.status(401).send("wrong password")
@@ -62,7 +63,8 @@ router.post("/signup", async (req, res) => {
         console.log("create new user")
         const user = new User({
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            employees: ["1", "2", "3"]
         })
         try {
             const savedUser = await user.save()
@@ -74,7 +76,7 @@ router.post("/signup", async (req, res) => {
                 data: public
             }, process.env.ACCESS_TOKEN_SECRET);
             console.log(accessToken)
-            res.json({ accessToken: accessToken })
+            res.json({ accessToken: accessToken, uid: user._id })
         } catch (err) {
 
         }

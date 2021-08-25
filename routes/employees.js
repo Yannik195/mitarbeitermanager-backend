@@ -5,6 +5,7 @@ const jwt = require("../jwt/jwt")
 
 
 //Get all employees
+// todo load only logged in users employees
 router.get("/", jwt.authenticateToken, async (req, res) => {
     console.log("acces to user: " + req.user)
     try {
@@ -25,6 +26,7 @@ router.get("/:employeeId", async (req, res) => {
 })
 
 //Submit employee
+// todo save to logged in user only
 router.post("/", async (req, res) => {
     console.log(req.body)
     const employee = new Employee({
